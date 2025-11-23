@@ -353,10 +353,8 @@ function switchView(fromView, toView) {
     toView.classList.add('active');
 
     // Scroll to top of views
-    const viewContainer = document.querySelector('.view-container');
-    if (viewContainer) {
-        viewContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    // Scroll to top of page (Keep Hero Visible)
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 
     setTimeout(() => {
         isTransitioning = false;
