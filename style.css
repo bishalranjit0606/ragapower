@@ -3,9 +3,9 @@
    ========================================= */
 :root {
   /* --- Color Palette (Cyber Gym) --- */
-  --bg-deep: #050505;
-  --bg-surface: #121214;
-  --bg-card: #1c1c1e;
+  --bg-deep: #000000;
+  --bg-surface: #0a0a0a;
+  --bg-card: #121212;
 
   --primary: #FF3B30;
   /* Vibrant Red */
@@ -88,6 +88,7 @@ body {
   filter: blur(80px);
   opacity: 0.4;
   animation: floatOrb 10s infinite ease-in-out alternate;
+  will-change: transform;
 }
 
 .orb-1 {
@@ -125,17 +126,63 @@ body {
   max-width: 480px;
   /* Strict mobile width */
   margin: 0 auto;
-  padding-bottom: 120px;
+  padding-bottom: 60px;
   position: relative;
   min-height: 100vh;
 }
 
+.view-container {
+  position: relative;
+  width: 100%;
+  min-height: 50vh;
+}
+
+/* --- Navbar --- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px var(--primary-glow);
+}
+
+.logo-icon {
+  color: white;
+  font-size: 1.2rem;
+}
+
 /* --- Hero Section --- */
 .hero-header {
-  padding: 0;
-  text-align: center;
   position: relative;
-  z-index: 10;
+  width: 100%;
+  height: 85vh;
+  /* Large hero area */
+  overflow: hidden;
   margin-bottom: 0;
 }
 
@@ -146,6 +193,7 @@ body {
   margin: 0;
   line-height: 1;
   position: relative;
+  will-change: transform;
 }
 
 .glitch-title::before,
@@ -235,71 +283,37 @@ body {
   }
 }
 
-.hero-content {
-  position: relative;
-}
-
 .mascot-container {
-  position: relative;
-  height: 280px;
-  margin: -30px 0 20px 0;
-  border-radius: 0;
-  overflow: visible;
-  box-shadow: none;
-  border: none;
-  perspective: 1000px;
-}
-
-@media (min-width: 768px) {
-  .mascot-container {
-    margin: 0 0 20px 0;
-  }
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 .raga-hero {
   width: 100%;
   height: 100%;
-  margin-top: 10px;
-  object-fit: contain;
-  transform: scale(1.1) translateY(10px);
-  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.8));
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.9);
 }
 
-@keyframes floatHero {
-
-  0%,
-  100% {
-    transform: scale(1.1) translateY(10px);
-  }
-
-  50% {
-    transform: scale(1.1) translateY(0px);
-  }
-}
-
-.hero-gradient-overlay {
+.hero-bottom-blend {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 40%;
-  background: linear-gradient(to top, var(--bg-deep), transparent);
-  z-index: 2;
-}
-
-.hero-text {
-  position: relative;
-  z-index: 20;
-  margin-top: -40px;
-}
-
-.hero-subtitle {
-  font-family: var(--font-display);
-  color: var(--accent);
-  letter-spacing: 3px;
-  font-size: 0.9rem;
-  margin-bottom: 20px;
-  text-shadow: 0 0 10px var(--accent-glow);
+  height: 350px;
+  /* Increased height */
+  background: linear-gradient(to top, var(--bg-deep) 20%, rgba(5, 5, 5, 0.8) 60%, transparent);
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 40px;
+  /* Push button down */
 }
 
 .btn-cta {
@@ -340,14 +354,14 @@ body {
   text-transform: uppercase;
   letter-spacing: 1px;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 0;
 }
 
 .subtitle {
   text-align: center;
   color: var(--text-muted);
   font-size: 0.9rem;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   font-style: italic;
 }
 
@@ -356,13 +370,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  justify-content: center;
+  padding: 10px 20px;
   position: sticky;
   top: 0;
   background: rgba(5, 5, 5, 0.8);
   backdrop-filter: blur(10px);
   z-index: 50;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .spacer {
@@ -396,7 +411,7 @@ body {
 .grid-menu {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
   padding: 0 20px;
 }
 
@@ -405,7 +420,7 @@ body {
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-md);
-  padding: 20px;
+  padding: 16px;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -500,7 +515,7 @@ body {
 .list-menu {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   padding: 0 20px;
 }
 
@@ -508,7 +523,7 @@ body {
   background: var(--bg-card);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: var(--radius-md);
-  padding: 24px;
+  padding: 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -545,8 +560,8 @@ body {
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: var(--radius-md);
-  padding: 20px;
-  margin-bottom: 16px;
+  padding: 16px;
+  margin-bottom: 12px;
   position: relative;
   overflow: hidden;
   animation: slideUpFade 0.5s var(--ease-out) forwards;
@@ -617,8 +632,8 @@ body {
 
 /* --- Finish Button --- */
 .finish-area {
-  margin-top: 30px;
-  padding-bottom: 40px;
+  margin-top: 20px;
+  padding-bottom: 20px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -653,22 +668,22 @@ body {
    5. ANIMATIONS & UTILITIES
    ========================================= */
 .hidden {
-  display: none !important;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+  transition: opacity 0.3s var(--ease-smooth);
 }
 
 .active {
-  display: block;
-  animation: fadeIn 0.4s var(--ease-smooth);
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+  opacity: 1;
+  pointer-events: auto;
+  position: relative;
+  z-index: 20;
+  transition: opacity 0.3s var(--ease-smooth);
 }
 
 @keyframes slideUpFade {
@@ -720,7 +735,7 @@ body {
   background: linear-gradient(145deg, rgba(28, 28, 30, 0.9), rgba(10, 10, 12, 0.95));
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 30px;
-  padding: 40px 30px;
+  padding: 30px 20px;
   text-align: center;
   max-width: 400px;
   width: 100%;
@@ -759,6 +774,7 @@ body {
   font-size: 2rem;
   margin-bottom: 10px;
   background: linear-gradient(to right, #fff, #ccc);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

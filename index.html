@@ -21,59 +21,59 @@
 
     <div class="app-container">
 
-        <header class="hero-header">
+        <nav class="navbar">
             <div class="logo-area">
                 <div class="logo-icon-wrapper">
                     <i class="fa-solid fa-dumbbell logo-icon"></i>
                 </div>
                 <h1 class="glitch-title" data-text="RAGAPOWER">RAGA<span class="highlight">POWER</span></h1>
             </div>
+        </nav>
 
-            <div class="hero-content">
-                <div class="mascot-container">
-                    <div class="mascot-glow"></div>
-                    <img src="raga.jpg" alt="Raga The Buffalo" class="raga-hero" id="ragaMascot">
-                    <div class="hero-gradient-overlay"></div>
-                </div>
+        <header class="hero-header">
+            <div class="mascot-container">
+                <img src="raga.jpg" alt="Raga The Buffalo" class="raga-hero" id="ragaMascot">
+            </div>
 
-                <div class="hero-text">
-                    <button class="btn-cta" onclick="scrollToSplits()">
-                        START TRAINING <i class="fa-solid fa-arrow-down"></i>
-                    </button>
-                </div>
+            <div class="hero-bottom-blend">
+                <button class="btn-cta" onclick="scrollToSplits()">
+                    START TRAINING <i class="fa-solid fa-arrow-down"></i>
+                </button>
             </div>
         </header>
 
-        <section id="split-view" class="view active">
-            <h2 class="section-title">Choose Your Split</h2>
-            <p class="subtitle">"Lightweight Baby!"</p>
-            <div class="grid-menu" id="split-buttons-container">
-            </div>
-        </section>
+        <main class="view-container">
+            <section id="split-view" class="view active">
+                <h2 class="section-title">Choose Your Split</h2>
+                <p class="subtitle">"Lightweight Baby!"</p>
+                <div class="grid-menu" id="split-buttons-container">
+                </div>
+            </section>
 
-        <section id="day-view" class="view hidden">
-            <div class="view-header">
-                <h2 class="section-title" id="selected-split-title">...</h2>
-            </div>
-            <div class="list-menu" id="day-buttons-container">
-            </div>
-        </section>
+            <section id="day-view" class="view hidden">
+                <div class="view-header">
+                    <h2 class="section-title" id="selected-split-title">...</h2>
+                </div>
+                <div class="list-menu" id="day-buttons-container">
+                </div>
+            </section>
 
-        <section id="workout-view" class="view hidden">
-            <div class="view-header">
-                <h2 class="section-title" id="workout-day-title">...</h2>
-            </div>
+            <section id="workout-view" class="view hidden">
+                <div class="view-header">
+                    <h2 class="section-title" id="workout-day-title">...</h2>
+                </div>
 
-            <div class="workout-card-container" id="workout-list">
-            </div>
+                <div class="workout-card-container" id="workout-list">
+                </div>
 
-            <div class="finish-area">
-                <button class="btn-finish" onclick="finishWorkout()">
-                    <span class="btn-text">I Crushed It!</span>
-                    <i class="fa-solid fa-fire btn-icon"></i>
-                </button>
-            </div>
-        </section>
+                <div class="finish-area">
+                    <button class="btn-finish" onclick="finishWorkout()">
+                        <span class="btn-text">I Crushed It!</span>
+                        <i class="fa-solid fa-fire btn-icon"></i>
+                    </button>
+                </div>
+            </section>
+        </main>
 
     </div>
 

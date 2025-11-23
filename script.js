@@ -94,7 +94,7 @@ const ragaWorkouts = {
                 { name: "Crunches", sets: "3 sets", reps: "30 reps" },
                 { name: "Leg Raise", sets: "3 sets", reps: "30 reps" }
             ],
-            "Day 4: Full Upper Body)": [
+            "Day 4: Full Upper Body": [
                 { name: "Incline Smith Bench Press", sets: "2 sets", reps: "10 reps" },
                 { name: "Peck Deck Fly", sets: "2 sets", reps: "10 reps" },
                 { name: "Wide Grip Pullups (Weighted)", sets: "3 sets", reps: "5 reps" },
@@ -189,7 +189,7 @@ const ragaWorkouts = {
                 { name: "Facepull", sets: "3 sets", reps: "10 reps" },
                 { name: "Wrist curls", sets: "4 sets", reps: "25 reps" }
             ],
-            "Day 6: Legs & Shoulders ": [
+            "Day 6: Legs & Shoulders": [
                 { name: "Leg Press", sets: "3 sets", reps: "10 reps" },
                 { name: "Bulgarian Split Squat", sets: "3 sets", reps: "10 reps" },
                 { name: "Calf Raise (Seated or Standing)", sets: "3 sets", reps: "10 reps" },
@@ -349,17 +349,17 @@ function switchView(fromView, toView) {
     fromView.classList.remove('active');
     fromView.classList.add('hidden');
 
-    // Small delay to allow CSS transition
-    setTimeout(() => {
-        fromView.style.display = 'none';
-        toView.style.display = 'block';
+    toView.classList.remove('hidden');
+    toView.classList.add('active');
 
-        // Small delay to trigger fade in
-        setTimeout(() => {
-            toView.classList.remove('hidden');
-            toView.classList.add('active');
-            isTransitioning = false;
-        }, 10);
+    // Scroll to top of views
+    const viewContainer = document.querySelector('.view-container');
+    if (viewContainer) {
+        viewContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    setTimeout(() => {
+        isTransitioning = false;
     }, 300);
 }
 
