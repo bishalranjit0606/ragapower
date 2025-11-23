@@ -132,11 +132,11 @@ body {
 
 /* --- Hero Section --- */
 .hero-header {
-  padding: 20px 0;
+  padding: 0;
   text-align: center;
   position: relative;
   z-index: 10;
-  margin-bottom: 40px;
+  margin-bottom: 0;
 }
 
 .glitch-title {
@@ -242,12 +242,18 @@ body {
 .mascot-container {
   position: relative;
   height: 280px;
-  margin: 0 0 20px 0;
+  margin: -30px 0 20px 0;
   border-radius: 0;
   overflow: visible;
   box-shadow: none;
   border: none;
   perspective: 1000px;
+}
+
+@media (min-width: 768px) {
+  .mascot-container {
+    margin: 0 0 20px 0;
+  }
 }
 
 .raga-hero {
@@ -256,7 +262,6 @@ body {
   object-fit: contain;
   transform: scale(1.1) translateY(10px);
   filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.8));
-  animation: floatHero 6s ease-in-out infinite;
 }
 
 @keyframes floatHero {
