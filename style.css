@@ -781,6 +781,19 @@ body {
   height: 100%;
 }
 
+/* Dynamic height for GIFs/Images */
+.video-container.dynamic-height {
+  padding-bottom: 0;
+  height: auto;
+}
+
+.video-container.dynamic-height img {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 
 
 .btn-modal-close:hover {

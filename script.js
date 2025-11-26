@@ -1,42 +1,4 @@
-// --- Video Library (Centralized for consistency) ---
-// Curated for short, form-only clips (30-90s)
-const YOUTUBE_BACKUP = {
-    squat: "https://www.youtube.com/watch?v=rMvwVtlqjTE", // StrongLifts (Barbell)
-    benchPress: "https://www.youtube.com/watch?v=rT7DgCr-3pg", // Scott Herman
-    bentOverRow: "https://www.youtube.com/watch?v=6tsk1dXp2SI",
-    overheadPress: "https://www.youtube.com/watch?v=_RlRDWO2jfg",
-    lunge: "https://www.youtube.com/watch?v=D7KaRcUTQeE",
-    plank: "https://www.youtube.com/watch?v=ASdvN_XEl_c",
-    inclineSmith: "https://www.youtube.com/watch?v=8lzJTCe-N0g",
-    peckDeck: "https://www.youtube.com/watch?v=O-OnSnCb0ko",
-    pullup: "https://www.youtube.com/watch?v=eGo4IYlbE5g",
-    seatedCableRow: "https://www.youtube.com/watch?v=GZbfZ033f74",
-    cableLateral: "https://www.youtube.com/watch?v=PZmPFxL3K_0",
-    preacherCurl: "https://www.youtube.com/watch?v=fIWP-FRFNU0",
-    tricepOverhead: "https://www.youtube.com/watch?v=_gsUck-7M74",
-    legPress: "https://www.youtube.com/watch?v=IZxyjW7MPJQ",
-    rdl: "https://www.youtube.com/watch?v=jcYJIQ46DDs", // Romanian Deadlift
-    splitSquat: "https://www.youtube.com/watch?v=2C-uNgKwPLE",
-    calfRaise: "https://www.youtube.com/watch?v=-M4-G8p8fmc",
-    inclineBench: "https://www.youtube.com/watch?v=SrqOu55lrYU",
-    tricepPushdown: "https://www.youtube.com/watch?v=2-LAMcpzODU",
-    uprightRow: "https://www.youtube.com/watch?v=amCU-ziC5YE",
-    latPulldown: "https://www.youtube.com/watch?v=CAwfIEnpH6E",
-    bicepCurl: "https://www.youtube.com/watch?v=ykJmrZ5v0Oo",
-    hammerCurl: "https://www.youtube.com/watch?v=zC3nLlEvin4",
-    facepull: "https://www.youtube.com/watch?v=V8dZ3pyiCBo",
-    legCurl: "https://www.youtube.com/watch?v=ELOCsoDSmrg",
-    shoulderPress: "https://www.youtube.com/watch?v=qEwK6ri776E",
-    shrugs: "https://www.youtube.com/watch?v=cJRVVxmytaM",
-    crunches: "https://www.youtube.com/watch?v=5ER5Of4MOtz",
-    legRaise: "https://www.youtube.com/watch?v=JB2oyawG9KI",
-    cableFly: "https://www.youtube.com/watch?v=Iwe6AmxVf7o", // Lower chest focus
-    closeGripPress: "https://www.youtube.com/watch?v=wxVRe9JQbqe",
-    dips: "https://www.youtube.com/watch?v=2z8JmcrW-As",
-    deadlift: "https://www.youtube.com/watch?v=op9kVnSso6Q",
-    wristCurl: "https://www.youtube.com/watch?v=fwQWjY2y7V4",
-    frontRaise: "https://www.youtube.com/watch?v=-t7fuZ0KhDA"
-};
+
 
 const VIDEO_DB = {
     squat: "gif/barbell-full-squat.gif",
@@ -89,7 +51,7 @@ const ragaWorkouts = {
                 { name: "Bench Press", sets: "3 sets", reps: "8-12 reps", video: VIDEO_DB.benchPress },
                 { name: "Bent Over Rows", sets: "3 sets", reps: "8-12 reps", video: VIDEO_DB.bentOverRow },
                 { name: "Overhead Press", sets: "3 sets", reps: "10-15 reps", video: VIDEO_DB.overheadPress },
-                { name: "Dumbbell Lunges", sets: "3 sets", reps: "10-15 reps", video: VIDEO_DB.lunge },
+                { name: "Lunges", sets: "3 sets", reps: "10-15 reps", video: VIDEO_DB.lunge },
                 { name: "Plank", sets: "3 sets", reps: "60s", video: VIDEO_DB.plank }
             ]
         }
@@ -125,7 +87,7 @@ const ragaWorkouts = {
                 { name: "Flat Bench Press", sets: "3 sets", reps: "10 reps", video: VIDEO_DB.benchPress },
                 { name: "Tricep Pushdown (Straight Bar)", sets: "3 sets", reps: "10 reps", video: VIDEO_DB.tricepPushdown },
                 { name: "Tricep Overhead Extension", sets: "3 sets", reps: "10 reps", video: VIDEO_DB.tricepOverhead },
-                { name: "SUPERSET: Cable Upright Row + Lateral Raises", sets: "3 sets", reps: "10 reps each", video: VIDEO_DB.uprightRow }
+                { name: "Lateral Raises", sets: "3 sets", reps: "10 reps", video: VIDEO_DB.uprightRow }
             ],
             "Day 2: Back, Biceps, Rear Delts": [
                 { name: "Lat Pulldown", sets: "3 sets", reps: "10 reps", video: VIDEO_DB.latPulldown },
@@ -154,7 +116,7 @@ const ragaWorkouts = {
                 { name: "Flat Bench Press", sets: "3 sets", reps: "10 reps", video: VIDEO_DB.benchPress },
                 { name: "Tricep Pushdown (Straight Bar)", sets: "3 sets", reps: "10 reps", video: VIDEO_DB.tricepPushdown },
                 { name: "Tricep Overhead Extension", sets: "3 sets", reps: "10 reps", video: VIDEO_DB.tricepOverhead },
-                { name: "SUPERSET: Cable Upright Row + Lateral Raises", sets: "3 sets", reps: "10 reps each", video: VIDEO_DB.uprightRow }
+                { name: "Lateral Raises", sets: "3 sets", reps: "10 reps", video: VIDEO_DB.uprightRow }
             ],
             "Day 2: Back, Biceps, Rear Delts": [
                 { name: "Lat Pulldown", sets: "3 sets", reps: "10 reps", video: VIDEO_DB.latPulldown },
@@ -192,7 +154,7 @@ const ragaWorkouts = {
                 { name: "Flat Bench Press (or Dumbbell Press)", sets: "3 sets", reps: "10 reps", video: VIDEO_DB.benchPress },
                 { name: "Tricep Pushdown (Straight Bar)", sets: "3 sets", reps: "10 reps", video: VIDEO_DB.tricepPushdown },
                 { name: "Tricep Overhead Extension", sets: "3 sets", reps: "10 reps", video: VIDEO_DB.tricepOverhead },
-                { name: "SUPERSET: Cable Upright Row + Lateral Raises", sets: "3 sets", reps: "10 reps each", video: VIDEO_DB.uprightRow }
+                { name: "Lateral Raises", sets: "3 sets", reps: "10 reps", video: VIDEO_DB.uprightRow }
             ],
             "Day 2: Back, Biceps, Rear Delts": [
                 { name: "Lat Pulldown", sets: "3 sets", reps: "10 reps", video: VIDEO_DB.latPulldown },
@@ -235,7 +197,7 @@ const ragaWorkouts = {
                 { name: "Flat Bench Press (or Dumbbell Press)", sets: "3 sets", reps: "10 reps", video: VIDEO_DB.benchPress },
                 { name: "Tricep Pushdown (Straight Bar)", sets: "3 sets", reps: "10 reps", video: VIDEO_DB.tricepPushdown },
                 { name: "Tricep Overhead Extension", sets: "3 sets", reps: "10 reps", video: VIDEO_DB.tricepOverhead },
-                { name: "SUPERSET: Cable Upright Row + Lateral Raises", sets: "3 sets", reps: "10 reps each", video: VIDEO_DB.uprightRow }
+                { name: "Lateral Raises", sets: "3 sets", reps: "10 reps", video: VIDEO_DB.uprightRow }
             ],
             "Day 2: Back, Biceps, Rear Delts": [
                 { name: "Lat Pulldown", sets: "3 sets", reps: "10 reps", video: VIDEO_DB.latPulldown },
@@ -487,6 +449,7 @@ function openVideo(exerciseName, videoUrl) {
         // Manual Link Provided
         if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be')) {
             // Handle YouTube Link
+            videoContainer.classList.remove('dynamic-height'); // Ensure 16:9 for video
             let embedUrl = videoUrl;
             if (videoUrl.includes('watch?v=')) {
                 const videoId = videoUrl.split('v=')[1].split('&')[0];
@@ -498,13 +461,16 @@ function openVideo(exerciseName, videoUrl) {
             newIframe.src = embedUrl;
         } else if (videoUrl.match(/\.(jpeg|jpg|gif|png)$/) != null) {
             // Handle Image/GIF with Fallback
-            videoContainer.innerHTML = `<img src="${videoUrl}" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:contain;" onerror="this.onerror=null; openVideo('${exerciseName}', null);">`;
+            videoContainer.classList.add('dynamic-height'); // Allow natural height
+            videoContainer.innerHTML = `<img src="${videoUrl}" alt="${exerciseName}" onerror="this.onerror=null; openVideo('${exerciseName}', null);">`;
         } else {
             // Assume generic video embed or direct link
+            videoContainer.classList.remove('dynamic-height');
             newIframe.src = videoUrl;
         }
     } else {
         // Fallback: Use YouTube Search Embed
+        videoContainer.classList.remove('dynamic-height');
         newIframe.src = `https://www.youtube.com/embed?listType=search&list=how+to+do+${exerciseName}+exercise`;
     }
 
