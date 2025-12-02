@@ -38,6 +38,24 @@ const VIDEO_DB = {
     frontRaise: "gif/frontRaise.gif"
 };
 
+// --- Performance: GIF Cache ---
+const gifCache = new Map();
+
+// Preload a GIF into cache
+function preloadGif(url) {
+    if (!url || gifCache.has(url)) return Promise.resolve();
+    
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => {
+            gifCache.set(url, img.src);
+            resolve();
+        };
+        img.onerror = reject;
+        img.src = url;
+    });
+}
+
 // --- RagaPower Data Structure ---
 // Full workout routines for all splits
 
@@ -433,7 +451,7 @@ window.closeCompletionModal = () => {
     }, 300);
 };
 
-// --- Video Modal Logic ---
+// --- Video Modal Logic (Optimized) ---
 function openVideo(exerciseName, videoUrl) {
     const modal = document.getElementById('video-modal');
     const title = document.getElementById('video-title');
@@ -441,15 +459,27 @@ function openVideo(exerciseName, videoUrl) {
 
     title.textContent = exerciseName;
 
-    // Reset container content
-    videoContainer.innerHTML = '<iframe id="video-frame" width="100%" height="315" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-    const newIframe = document.getElementById('video-frame');
+    // Reset container content with loading state
+    videoContainer.innerHTML = `
+        <div style="display: flex; align-items: center; justify-content: center; min-height: 315px; background: rgba(0,0,0,0.3); border-radius: 12px;">
+            <div style="text-align: center; color: var(--text-muted);">
+                <i class="fa-solid fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 10px; color: var(--primary);"></i>
+                <p>Loading...</p>
+            </div>
+        </div>
+    `;
+
+    // Show modal immediately with loading state
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+        modal.classList.add('active');
+    }, 10);
 
     if (videoUrl && videoUrl.trim() !== "") {
         // Manual Link Provided
         if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be')) {
             // Handle YouTube Link
-            videoContainer.classList.remove('dynamic-height'); // Ensure 16:9 for video
+            videoContainer.classList.remove('dynamic-height');
             let embedUrl = videoUrl;
             if (videoUrl.includes('watch?v=')) {
                 const videoId = videoUrl.split('v=')[1].split('&')[0];
@@ -458,26 +488,37 @@ function openVideo(exerciseName, videoUrl) {
                 const videoId = videoUrl.split('youtu.be/')[1];
                 embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
             }
-            newIframe.src = embedUrl;
+            videoContainer.innerHTML = `<iframe id="video-frame" width="100%" height="315" src="${embedUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
         } else if (videoUrl.match(/\.(jpeg|jpg|gif|png)$/) != null) {
-            // Handle Image/GIF with Fallback
-            videoContainer.classList.add('dynamic-height'); // Allow natural height
-            videoContainer.innerHTML = `<img src="${videoUrl}" alt="${exerciseName}" onerror="this.onerror=null; openVideo('${exerciseName}', null);">`;
+            // Handle Image/GIF with Lazy Loading and Cache
+            videoContainer.classList.add('dynamic-height');
+            
+            // Check if already cached
+            if (gifCache.has(videoUrl)) {
+                // Load from cache instantly
+                videoContainer.innerHTML = `<img src="${videoUrl}" alt="${exerciseName}" loading="lazy" style="width: 100%; height: auto; display: block;">`;
+            } else {
+                // Preload and cache the GIF
+                preloadGif(videoUrl)
+                    .then(() => {
+                        videoContainer.innerHTML = `<img src="${videoUrl}" alt="${exerciseName}" loading="lazy" style="width: 100%; height: auto; display: block;">`;
+                    })
+                    .catch(() => {
+                        // Fallback to YouTube search on error
+                        videoContainer.classList.remove('dynamic-height');
+                        videoContainer.innerHTML = `<iframe id="video-frame" width="100%" height="315" src="https://www.youtube.com/embed?listType=search&list=how+to+do+${exerciseName}+exercise" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                    });
+            }
         } else {
             // Assume generic video embed or direct link
             videoContainer.classList.remove('dynamic-height');
-            newIframe.src = videoUrl;
+            videoContainer.innerHTML = `<iframe id="video-frame" width="100%" height="315" src="${videoUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
         }
     } else {
         // Fallback: Use YouTube Search Embed
         videoContainer.classList.remove('dynamic-height');
-        newIframe.src = `https://www.youtube.com/embed?listType=search&list=how+to+do+${exerciseName}+exercise`;
+        videoContainer.innerHTML = `<iframe id="video-frame" width="100%" height="315" src="https://www.youtube.com/embed?listType=search&list=how+to+do+${exerciseName}+exercise" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
     }
-
-    modal.classList.remove('hidden');
-    setTimeout(() => {
-        modal.classList.add('active');
-    }, 10);
 }
 
 function closeVideo() {
