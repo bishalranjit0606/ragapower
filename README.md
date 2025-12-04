@@ -32,6 +32,16 @@ This project was made for:
 
 Feel free to fork it, improve it, or use it as inspiration.
 
+## Screenshots
+
+![Website Screenshot 1](images/img1.jpeg)
+
+![Website Screenshot 2](images/img2.jpeg)
+
+![Website Screenshot 3](images/img3.jpeg)
+
+![Website Screenshot 4](images/img4.jpeg)
+
 ## Contributing
 Open to suggestions, improvements, or workout ideas.  
 Feel free to submit PRs or open an issue.
